@@ -1,10 +1,10 @@
 '''
-Created on May 22, 2022
+Created on May 24, 2022
 
 @author: Jim Yin
 '''
 
-# Run this app with `python basic02.py` and
+# Run this app with `python basic04.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
 
 from dash import Dash, html, dcc
@@ -15,8 +15,9 @@ app = Dash(__name__)
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
 
-df = px.data.iris()
-fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species")
+df = px.data.gapminder()
+fig = px.scatter(df.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop", color="continent",
+           hover_name="country", log_x=True, size_max=60)
 
 app.layout = html.Div(children=[
     html.H1(children='Hello Dash'),

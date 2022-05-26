@@ -9,7 +9,6 @@ Created on May 22, 2022
 
 from dash import Dash, html, dcc
 import plotly.express as px
-import pandas as pd
 
 app = Dash(__name__)
 
