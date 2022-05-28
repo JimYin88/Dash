@@ -1,13 +1,16 @@
 '''
-Created on May 25, 2022
+Created on May 26, 2022
 
 @author: Jim Yin
 '''
+
 
 from dash import Dash, dcc, html, Input, Output
 
 app = Dash(__name__)
 app.layout = html.Div([
+    dcc.Checklist(['New York City', 'Montreal', 'San Francisco'], ['Montreal'], id='demo-checklist'),
+    html.Div(id='dd-output-container3'),    
     dcc.Dropdown(['NYC', 'MTL', 'SF'], 'NYC', id='demo-dropdown'),
     html.Div(id='dd-output-container'),
     dcc.Dropdown(['NYC', 'MTL', 'SF'], 'NYC', id='demo-dropdown2'),
@@ -20,6 +23,13 @@ app.layout = html.Div([
     Input('demo-dropdown', 'value')
 )
 def update_output(value):
+    return f'You have selected {value}'
+
+@app.callback(
+    Output('dd-output-container3', 'children'),
+    Input('demo-checklist', 'value')
+)
+def update_output3(value):
     return f'You have selected {value}'
 
 @app.callback(
